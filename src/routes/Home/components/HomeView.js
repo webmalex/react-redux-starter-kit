@@ -1,6 +1,7 @@
 import React from 'react'
 // import DuckImage from '../assets/Duck.jpg'
 // import './HomeView.scss'
+import GoldenLayout from 'golden-layout'
 
 export const HomeView = () => (
   <div>
