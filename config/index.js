@@ -49,7 +49,8 @@ const config = {
     'react-redux',
     'react-router',
     'redux',
-    'golden-layout'
+    'golden-layout',
+    // 'jquery'
   ],
 
   // ----------------------------------
