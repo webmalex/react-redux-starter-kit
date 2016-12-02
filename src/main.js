@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 
+import jQuery from 'jquery'
+window.$ = window.jQuery = jQuery
+window.React = React
+window.ReactDOM = ReactDOM
+
 // ========================================================
 // Store Instantiation
 // ========================================================
