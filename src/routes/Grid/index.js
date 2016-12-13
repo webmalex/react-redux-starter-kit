@@ -1,4 +1,4 @@
-import GridView from './components/GridView'
+import GridView from './components/GridView8'
 
 // Sync route definition
 export default {
