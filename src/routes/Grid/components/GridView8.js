@@ -64,7 +64,6 @@ const ResponsiveLocalStorageLayout = React.createClass({
   }
 });
 
-module.exports = ResponsiveLocalStorageLayout;
 
 function getFromLS(key) {
   let ls = {};
