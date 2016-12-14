@@ -22,6 +22,7 @@ export default class MySelect extends Component {
 
     return (
       <VirtualizedSelect
+        multi
         options={options}
         onChange={(selectValue) => this.setState({ selectValue })}
         value={this.state.selectValue}
