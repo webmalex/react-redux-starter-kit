@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PureComponent} from 'react'
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
@@ -13,34 +13,30 @@ export const GridView = () => (
 
 export default GridView
 
-// var PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
 const originalLayouts = getFromLS('layouts') || {};
-const ResponsiveLocalStorageLayout = React.createClass({
+class ResponsiveLocalStorageLayout extends PureComponent {
   // mixins: [PureRenderMixin],
+  constructor(props) {
+    super(props);
+    this.state = {layouts: JSON.parse(JSON.stringify(originalLayouts))}
+    this.resetLayout = this.resetLayout.bind(this)
+    this.onLayoutChange = this.onLayoutChange.bind(this)
+  }
 
-  getDefaultProps() {
-    return {
+  static defaultProps = {
       className: "layout",
       cols: {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2},
       rowHeight: 30
-    };
-  },
-
-  getInitialState() {
-    return {
-      layouts: JSON.parse(JSON.stringify(originalLayouts))
-    };
-  },
+  }
 
   resetLayout() {
     this.setState({layouts: {}});
-  },
+  }
 
   onLayoutChange(layout, layouts) {
     saveToLS('layouts', layouts);
     this.setState({layouts});
-    // this.props.onLayoutChange(layout, layouts);
-  },
+  }
 
   render() {
     return (
@@ -62,7 +58,7 @@ const ResponsiveLocalStorageLayout = React.createClass({
       </div>
     );
   }
-});
+}
 
 
 function getFromLS(key) {
