@@ -7,18 +7,12 @@ import MySelect from './MySelect'
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-export const GridView = () => (
-  <ResponsiveLocalStorageLayout />
-)
-
-export default GridView
-
-class ResponsiveLocalStorageLayout extends PureComponent {
+export default class GridView extends PureComponent {
   constructor(props) {
     super(props);
     // this.state = {layouts: JSON.parse(JSON.stringify(getFromLS('layouts') || {}))};
     this.state = {};
-    this.resetLayout = this.resetLayout.bind(this);
+    // this.resetLayout = this.resetLayout.bind(this);
     this.onLayoutChange = this.onLayoutChange.bind(this);
     // console.log('constructor');
   }
@@ -29,23 +23,22 @@ class ResponsiveLocalStorageLayout extends PureComponent {
       rowHeight: 30
   }
 
-  resetLayout() {
-    this.setState({layouts: {}});
-  }
+  // resetLayout() {
+  //   this.setState({layouts: {}});
+  // }
 
   onLayoutChange(layout, layouts) {
     // saveToLS('layouts', layouts);
-    this.setState({layouts});
+    // this.setState({layouts});
+    this.props.update(layouts);
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.resetLayout}>Reset Layout</button>
         <ResponsiveReactGridLayout
             ref="rrgl"
-            {...this.props}
-            layouts={this.state.layouts}
+            layouts={this.props.grid}
             onLayoutChange={this.onLayoutChange}>
           <div key="1" data-grid={{w: 2, h: 3, x: 0, y: 0}}>
             <MySelect />
@@ -59,7 +52,21 @@ class ResponsiveLocalStorageLayout extends PureComponent {
     );
   }
 }
+            // {...this.props}
 
+GridView.propTypes = {
+  // grid     : React.PropTypes.array.isRequired,
+  update   : React.PropTypes.func.isRequired
+}
+
+
+        // <button onClick={this.resetLayout}>Reset Layout</button>
+
+// export const GridView = () => (
+//   <ResponsiveLocalStorageLayout />
+// )
+
+// export default GridView
 
 // function getFromLS(key) {
 //   let ls = {};
