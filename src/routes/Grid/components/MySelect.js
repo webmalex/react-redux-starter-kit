@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import VirtualizedSelect from 'react-virtualized-select'
 
 import 'react-select/dist/react-select.css'
 import 'react-virtualized/styles.css'
 import 'react-virtualized-select/styles.css'
 
-export default class MySelect extends Component {
+export default class MySelect extends PureComponent {
   constructor (props) {
     super(props)
-
     this.state = {}
   }
 
@@ -17,7 +16,6 @@ export default class MySelect extends Component {
       { label: "One", value: 1 },
       { label: "Two", value: 2 },
       { label: "Three", value: 3, disabled: true }
-      // And so on...
     ]
 
     return (
@@ -30,5 +28,3 @@ export default class MySelect extends Component {
     )
   }
 }
-
-// export default GridView
