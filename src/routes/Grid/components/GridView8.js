@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React, {Component, PureComponent} from 'react'
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
@@ -13,14 +13,14 @@ export const GridView = () => (
 
 export default GridView
 
-const originalLayouts = getFromLS('layouts') || {};
 class ResponsiveLocalStorageLayout extends PureComponent {
-  // mixins: [PureRenderMixin],
   constructor(props) {
     super(props);
-    this.state = {layouts: JSON.parse(JSON.stringify(originalLayouts))}
-    this.resetLayout = this.resetLayout.bind(this)
-    this.onLayoutChange = this.onLayoutChange.bind(this)
+    // this.state = {layouts: JSON.parse(JSON.stringify(getFromLS('layouts') || {}))};
+    this.state = {};
+    this.resetLayout = this.resetLayout.bind(this);
+    this.onLayoutChange = this.onLayoutChange.bind(this);
+    // console.log('constructor');
   }
 
   static defaultProps = {
@@ -34,7 +34,7 @@ class ResponsiveLocalStorageLayout extends PureComponent {
   }
 
   onLayoutChange(layout, layouts) {
-    saveToLS('layouts', layouts);
+    // saveToLS('layouts', layouts);
     this.setState({layouts});
   }
 
@@ -61,20 +61,22 @@ class ResponsiveLocalStorageLayout extends PureComponent {
 }
 
 
-function getFromLS(key) {
-  let ls = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem('rgl-8')) || {};
-    } catch(e) {/*Ignore*/}
-  }
-  return ls[key];
-}
+// function getFromLS(key) {
+//   let ls = {};
+//   if (global.localStorage) {
+//     try {
+//       ls = JSON.parse(global.localStorage.getItem('rgl-8')) || {};
+//       // console.log('getFromLS');
+//     } catch(e) {/*Ignore*/}
+//   }
+//   return ls[key];
+// }
 
-function saveToLS(key, value) {
-  if (global.localStorage) {
-    global.localStorage.setItem('rgl-8', JSON.stringify({
-      [key]: value
-    }));
-  }
-}
+// function saveToLS(key, value) {
+//   if (global.localStorage) {
+//     global.localStorage.setItem('rgl-8', JSON.stringify({
+//       [key]: value
+//     }));
+//     // console.log('saveToLS');
+//   }
+// }
